@@ -1,0 +1,16 @@
+{
+  "name": "uif-matrixlcd-printf-1bit",
+  "version": "0.0.0",
+  "description": "1 bit LCD buffer transferred using printf.",
+  "keywords": [],
+  "author": "Marcus Chang <marcus.chang@arm.com>",
+  "repository": {
+    "url": "git@github.com:ARMmbed/uif-matrixlcd-printf-1bit.git",
+    "type": "git"
+  },
+  "homepage": "https://github.com/ARMmbed/uif-matrixlcd-printf-1bit",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "mbed-drivers": "~0.12.0"
+  }
+}

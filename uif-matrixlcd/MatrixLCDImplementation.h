@@ -38,7 +38,6 @@ public:
 
 private:
     void transfer(uint16_t* buffer);
-    void transferDone(void);
 
     // disable copy and assignment constructor
     MatrixLCDImplementation(const MatrixLCDImplementation&);

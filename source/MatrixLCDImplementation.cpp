@@ -96,12 +96,6 @@ void MatrixLCDImplementation::sendFrameBuffer(SharedPointer<FrameBuffer>& buffer
 
 void MatrixLCDImplementation::transfer(uint16_t* address)
 {
-    // call external callback signaling transfer has begun
-    if (onTransferBegin)
-    {
-        onTransferBegin.call();
-    }
-
     // clear screen and move cursor to (0,0)
     printf("%c[2J%c[;H", 27, 27);
 
@@ -115,11 +109,11 @@ void MatrixLCDImplementation::transfer(uint16_t* address)
             {
                 if (buffer[height * LCD_Stride_Bytes + width] & (1 << bit))
                 {
-                    printf("<>");
+                    printf("  ");
                 }
                 else
                 {
-                    printf("  ");
+                    printf("##");
                 }
             }
         }
@@ -127,17 +121,17 @@ void MatrixLCDImplementation::transfer(uint16_t* address)
         printf("\r\n");
     }
 
-    FunctionPointer0<void> fp(this, &MatrixLCDImplementation::transferDone);
-    minar::Scheduler::postCallback(fp);
-}
+    // call external callback signaling transfer has begun
+    if (onTransferBegin)
+    {
+        minar::Scheduler::postCallback(onTransferBegin);
+    }
 
-void MatrixLCDImplementation::transferDone()
-{
-    // schedule original callback function to be called
-    minar::Scheduler::postCallback(onTransferDone)
-        .tolerance(minar::milliseconds(0));
+    if (onTransferDone)
+    {
+        minar::Scheduler::postCallback(onTransferDone);
+    }
 }
-
 
 /// Private Function Definitions
 static void initControlSignals(uint16_t* buf)

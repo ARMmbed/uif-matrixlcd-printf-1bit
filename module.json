@@ -1,6 +1,6 @@
 {
   "name": "uif-matrixlcd-printf-1bit",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "description": "1 bit LCD buffer transferred using printf.",
   "keywords": [],
   "author": "Marcus Chang <marcus.chang@arm.com>",
